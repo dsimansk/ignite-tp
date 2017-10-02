@@ -1,0 +1,12 @@
+---
+flows:
+- steps:
+  - kind: endpoint
+    uri: twitter-mention-connector--KvSUw7eYMcWe1kmZueI:MENTIONS
+  - kind: filter
+    expression: ${body.text} contains '#salute'
+    steps:
+    - kind: endpoint
+      uri: atlas:mapping-step-3.json
+    - kind: endpoint
+      uri: salesforce-upsert-sobject--KvSV1v9YMcWe1kmZueJ?sObjectIdName=TwitterScreenName__c&sObjectName=Contact
